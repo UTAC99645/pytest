@@ -2,11 +2,12 @@ from pathlib import Path
 
 
 def main():
-    bdir = Path("./bdir")
-    if not bdir.exists():
-        print("bdir not exists, creating...")
+    bdir = Path("./input")
+    if not bdir.exists() or not bdir.is_dir():
+        print("input not exists, creating...")
+        bdir.unlink(missing_ok=True)
         bdir.mkdir(exist_ok=True, parents=True)
-        print("bdir created, please put your files in bdir and run again.")
+        print("input created, please put your files in bdir and run again.")
         return [1]
     if not bdir.exists():
         bdir.mkdir(exist_ok=True, parents=True)

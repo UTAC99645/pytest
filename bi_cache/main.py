@@ -11,8 +11,10 @@ from tqdm.auto import tqdm
 
 from .bi import cache
 
-if not Path("./output").exists():
+if not Path("./output").exists() or not Path("./output").is_dir():
+    Path("./output").unlink(missing_ok=True)
     Path("./output").mkdir(exist_ok=True, parents=True)
+
 output_dir = Path("./output")
 
 sem = asyncio.Semaphore(2)  # 限制同时运行的协程数量
